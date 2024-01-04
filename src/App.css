@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background-color: black;
 }
 
 .App-logo {
@@ -11,6 +12,17 @@
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
+}
+.con{
+  /* background-color: red; */
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+}
+.carddiv{
+  background-color: red;
+  display: grid;
+  grid-template-columns: 200px 200px 200px;
 }
 
 .App-header {
