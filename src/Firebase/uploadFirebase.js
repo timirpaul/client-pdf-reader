@@ -10,6 +10,7 @@ import { app } from "./firebase";
 
 export const uploadFile = async (file, setFirebaseFileURL ,setFileName) => {
   const storage = getStorage(app);
+
   const fileName = new Date().getTime() + file.name;
   if (!file) return null;
   const fileRef = ref(storage, "files/" + fileName);
@@ -23,6 +24,36 @@ export const uploadFile = async (file, setFirebaseFileURL ,setFileName) => {
     });
   });
 };
+
+// multiUploadFiles uploadFirebase.js
+
+
+export const multiUploadFiles = async (files, setFirebaseFileURLs, setFileNames) => {
+  const storage = getStorage(app);
+
+  // Upload each file in the array
+  const uploadPromises = files.map(async (file) => {
+    const fileName = new Date().getTime() + file.name;
+    const fileRef = ref(storage, "files/" + fileName);
+    
+    await uploadBytes(fileRef, file);
+    
+    const url = await getDownloadURL(fileRef);
+
+    // Update state arrays
+    setFirebaseFileURLs((prevURLs) => [...prevURLs, url]);
+    setFileNames((prevNames) => [...prevNames, fileName]);
+  });
+
+  try {
+    await Promise.all(uploadPromises);
+    return { success: true };
+  } catch (error) {
+    console.error('Error uploading files:', error);
+    return { success: false, error };
+  }
+};
+
 
 export const deleteFile = async (fileName) => {
   const storage = getStorage(app);

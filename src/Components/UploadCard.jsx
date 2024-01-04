@@ -17,16 +17,10 @@ const UploadCard = () => {
       console.log(uploadBtn);
       console.log(firebaseFileURL);
     }
-    // return ()=>{ }
+    
   }, [file]);
 
-  // useEffect(() => {
-  //   if(!(file === null)){
-  //    uploadFile(file).then((url)=>{
-  //     setFirebaseFileURL(url)
-  //   })}
-  //   // return ()=>{ }
-  // }, [file]);
+
 
   useEffect(() => {
     if (!(firebaseFileURL === null)) {
@@ -86,7 +80,7 @@ const UploadCard = () => {
                   />
                 </div> */}
                 <div className="mb-3">
-                  <label for="formFileDisabled" className="form-label">
+                  <label  className="form-label">
                     Upload CV
                     
                   </label>
@@ -126,4 +120,4 @@ const UploadCard = () => {
   );
 };
 
-export default UploadCard;
+// export default UploadCard;

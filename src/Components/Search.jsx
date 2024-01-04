@@ -26,7 +26,8 @@ const Search = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      console.log(search);
+      if(search==="") return fetchData();
+      console.log("search",search);
       const res = await axios.post(searchUrl, { search  });
       console.log(res);
       setData(res.data.data);
@@ -37,7 +38,7 @@ const Search = () => {
 
 
   console.log(data);
-  // console.log(search);
+  // console.log("search",search);
   return (
     <>
       <div className="container">
@@ -74,16 +75,15 @@ const Search = () => {
             <DeleteAll dataList={data}/>
               {data?.length > 0
                 ? data?.map((item, i) => (
-                    <div className="col-6 col-md-3 m-3">
+                    <div className="col-6 col-md-3 m-3" key={item._id} >
                       <Card
-                        key={item._id}
                         name={item.name}
                         filePath={item.file}
                         email={item.email}
                       />
                     </div>
                   ))
-                : "Not Found"}
+                : "No CV Found"}
             </div>
           </div>
         </div>

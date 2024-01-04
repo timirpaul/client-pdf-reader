@@ -1,8 +1,6 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import MultiFile from "./MultiFile";
-import UploadCard from "./UploadCard";
+import React from "react";
+import { Link} from "react-router-dom";
+import MultiFileUploadCard from "./MultiFileUploadCard";
 
 const Home = () => {
   return (
@@ -17,8 +15,8 @@ const Home = () => {
             Search
           </Link>
           <h1>Upload CV</h1>
-          {/* <UploadCard/> */}
-          <MultiFile/>
+
+          <MultiFileUploadCard />
         </div>
       </div>
     </div>
