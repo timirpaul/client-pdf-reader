@@ -15,10 +15,10 @@ const Search = () => {
   const [loading, setLoading] = useState(false);
 
   const fetchData = async () => {
-    setLoading(true)
+    setLoading(true);
     const res = await axios.get(url);
     setData(res.data);
-    setLoading(false)
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -28,7 +28,7 @@ const Search = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      setLoading(true)
+      setLoading(true);
       if (search === "") return fetchData();
       // console.log("search", search);
       const res = await axios.post(searchUrl, { search });
@@ -36,7 +36,9 @@ const Search = () => {
       setData(res.data.data);
     } catch (error) {
       console.log(error);
-    }finally{setLoading(false)}
+    } finally {
+      setLoading(false);
+    }
   };
 
   // console.log(data);
@@ -44,39 +46,39 @@ const Search = () => {
   // console.log("search",search);
   return (
     <>
-      {loading ? 
-        <> Loading...</>
-       : 
-        <div className="container">
-          <div className="card ">
-            <div className="card-body m-3 ">
-              <Link
-                to={"/"}
-                className=" btn btn-primary m-3"
-                style={{ float: "right", width: "200px" }}
-              >
-                Upload CV
-              </Link>
+      <div className="container">
+        <div className="card ">
+          <div className="card-body m-3 ">
+            <Link
+              to={"/"}
+              className=" btn btn-primary m-3"
+              style={{ float: "right", width: "200px" }}
+            >
+              Upload CV
+            </Link>
 
-              <h1>Search CV</h1>
-              <form onSubmit={submitHandler}>
-                <div className="mb-3">
-                  <input
-                    className="form-control"
-                    type="text"
-                    placeholder="search any skill keywords"
-                    id="formFileDisabled"
-                    onChange={(e) => {
-                      setSearch(e.target.value);
-                    }}
-                    //   disabled
-                  />
-                  <button className=" btn btn-primary m-3" type="submit">
-                    Search
-                  </button>
-                </div>
-              </form>
+            <h1>Search CV</h1>
+            <form onSubmit={submitHandler}>
+              <div className="mb-3">
+                <input
+                  className="form-control"
+                  type="text"
+                  placeholder="search any skill keywords"
+                  id="formFileDisabled"
+                  onChange={(e) => {
+                    setSearch(e.target.value);
+                  }}
+                  //   disabled
+                />
+                <button className=" btn btn-primary m-3" type="submit">
+                  Search
+                </button>
+              </div>
+            </form>
 
+            {loading ? (
+              "Loading... "
+            ) : (
               <div className="row">
                 <DeleteAll dataList={data} />
                 {data?.length > 0
@@ -91,10 +93,10 @@ const Search = () => {
                     ))
                   : "No CV Found"}
               </div>
-            </div>
+            )}
           </div>
         </div>
-      }
+      </div>
     </>
   );
 };
