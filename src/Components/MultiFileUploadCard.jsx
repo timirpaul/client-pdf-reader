@@ -10,10 +10,12 @@ const MultiFileUploadCard = () => {
   const [firebaseFileURLs, setFirebaseFileURLs] = useState([]);
   const [fileNames, setFileNames] = useState([]);
   const [uploaded, setUploaded] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (files.length > 0) {
       // Upload files to Firebase
+      setLoading(true)
       multiUploadFiles(files, setFirebaseFileURLs, setFileNames).then((res) => {
         if (res.success) setUploaded(true);
       });
@@ -29,8 +31,11 @@ const MultiFileUploadCard = () => {
   //   }, [firebaseFileURLs]);
 
   useEffect(() => {
-    if (uploaded) submitHandler();
-  }, [uploaded]);
+    if (uploaded) {
+        submitHandler();
+        setLoading(false)
+    }
+}, [uploaded]);
 
 //   useEffect(() => {
     
@@ -72,9 +77,9 @@ const MultiFileUploadCard = () => {
   //   console.log("fileNames",fileNames);
   //   console.log("firebaseFileURLs",firebaseFileURLs);
   //   console.log("uploaded",uploaded);
-
   return (
     <>
+    { loading ?  <> Loading...</> :
       <div>
         <form>
           <div className="mb-3">
@@ -98,6 +103,7 @@ const MultiFileUploadCard = () => {
           </div>
         </form>
       </div>
+}
     </>
   );
 };
