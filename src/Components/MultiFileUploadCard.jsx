@@ -12,12 +12,16 @@ const MultiFileUploadCard = () => {
   const [uploaded, setUploaded] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  const postUrl = `${process.env.REACT_APP_PROXY}/router/upload`
+
   useEffect(() => {
     if (files.length > 0) {
       // Upload files to Firebase
       setLoading(true)
       multiUploadFiles(files, setFirebaseFileURLs, setFileNames).then((res) => {
-        if (res.success) setUploaded(true);
+        if (res.success) {setUploaded(true);
+          console.log(res);
+        }
       });
     }
   }, [files]);
@@ -59,7 +63,7 @@ const MultiFileUploadCard = () => {
         data.append("name", formData.name);
         data.append("firebaseFileURL", formData.firebaseFileURL);
 
-        const res = await axios.post("/router/upload", data);
+        const res = await axios.post(postUrl, data);
         console.log(res);
       });
 
