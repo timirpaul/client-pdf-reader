@@ -2,7 +2,7 @@ import React, { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { deleteFile } from "../Firebase/uploadFirebase";
 
-const deleteURL = "/router/delete";
+const deleteURL = `${process.env.REACT_APP_PROXY}/router/delete`;
 
 const DeleteAll = ({ dataList }) => {
   const navigate = useNavigate();

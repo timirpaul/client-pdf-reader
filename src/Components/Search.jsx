@@ -5,8 +5,8 @@ import Card from "./Card";
 import { Link } from "react-router-dom";
 import DeleteAll from "./DeleteAll";
 
-const url = "/router/all";
-const searchUrl = "/router/search";
+const url = `${process.env.REACT_APP_PROXY}/router/all`;
+const searchUrl = `${process.env.REACT_APP_PROXY}/router/search`;
 const Search = () => {
   // console.log(process.env.REACT_APP_DATA);
 
@@ -38,6 +38,7 @@ const Search = () => {
 
 
   console.log(data);
+  console.log(process.env.REACT_APP_PROXY);
   // console.log("search",search);
   return (
     <>
