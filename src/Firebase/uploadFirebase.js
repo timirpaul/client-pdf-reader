@@ -42,7 +42,7 @@ export const multiUploadFiles = async (files, setFirebaseFileURLs, setFileNames)
 
     // Update state arrays
     setFirebaseFileURLs((prevURLs) => [...prevURLs, url]);
-    setFileNames((prevNames) => [...prevNames, fileName]);
+    setFileNames((prevNames) => [...prevNames, file.name]);
   });
 
   try {
